@@ -15,23 +15,37 @@ An in-depth exploration of Docker container termination mechanisms, demonstratin
 
 ```mermaid
 graph TD
-    A[Docker Host] --> B[Container Lifecycle Manager]
-    B --> C[Signal Handler]
-    C --> D[SIGTERM Process]
-    C --> E[SIGKILL Process]
-    D --> F[Graceful Shutdown]
-    F --> G[Cleanup Operations]
-    E --> H[Force Termination]
-    G --> I[Container Removal]
-    H --> I
+    A[Docker Container Running] --> B{Command Type}
     
-    subgraph Monitoring
-    J[Logging System]
-    K[Process Monitor]
+    %% Kill Command Branch
+    B -->|docker kill| C[Send SIGKILL]
+    C --> D[Container Stopped]
+    
+    %% Stop Command Branch
+    B -->|docker stop| E[Send SIGTERM]
+    E --> F[Wait for Timeout]
+    F --> G[Send SIGKILL]
+    G --> D
+    
+    %% Styling
+    classDef running fill:#90EE90,stroke:#333,stroke-width:2px
+    classDef kill fill:#FFB6C1,stroke:#333,stroke-width:2px
+    classDef stop fill:#FFEB3B,stroke:#333,stroke-width:2px
+    classDef common fill:#FFB6C1,stroke:#333,stroke-width:2px
+    
+    class A running
+    class C,G,D kill
+    class E,F stop
+    
+    %% Add descriptive notes
+    subgraph Force Termination
+        C
     end
     
-    B --> J
-    B --> K
+    subgraph Graceful Shutdown
+        E
+        F
+    end
 ```
 
 ## 💻 Technical Stack
