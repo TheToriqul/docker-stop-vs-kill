@@ -123,15 +123,17 @@ docker stop graceful-termination
 docker logs graceful-termination
 ```
 
-### Advanced Features
 Experiment with different signal handling scenarios:
 
 ```bash
+# Start a container with SIGTERM handling as before
+docker run --name force-termination -d ubuntu:latest /bin/bash -c "trap 'echo SIGTERM received; exit 0' SIGTERM; while :; do echo 'Running'; sleep 1; done"
+
 # Force kill a container
 docker kill force-termination
 
-# Custom timeout for stop command
-docker stop -t 20 graceful-termination
+# View the logs
+docker logs force-termination
 ```
 
 ## 📫 Contact
