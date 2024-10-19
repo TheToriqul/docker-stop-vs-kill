@@ -50,6 +50,19 @@ docker ps
 docker ps -a  # Show all containers including stopped ones
 
 #------------------------------------------------------------------------------
+# Container Inspection
+#------------------------------------------------------------------------------
+
+# Show detailed container information
+docker inspect graceful-termination
+
+# Monitor container resource usage
+docker stats graceful-termination
+
+# View container processes
+docker top graceful-termination
+
+#------------------------------------------------------------------------------
 # Container Cleanup
 #------------------------------------------------------------------------------
 
@@ -62,19 +75,6 @@ docker container prune
 
 # Remove containers and their volumes
 docker rm -v graceful-termination
-
-#------------------------------------------------------------------------------
-# Container Inspection
-#------------------------------------------------------------------------------
-
-# Show detailed container information
-docker inspect graceful-termination
-
-# Monitor container resource usage
-docker stats graceful-termination
-
-# View container processes
-docker top graceful-termination
 
 ###############################################################################
 # End of Command Reference
