@@ -130,4 +130,9 @@ docker stop -t 20 graceful-termination
 - [GitHub Repository](https://github.com/TheToriqul/docker-stop-vs-kill)
 - [Portfolio](https://github.com/TheToriqul)
 
+## 👏 Acknowledgments
+- [Poridhi for excellent labs](https://poridhi.io/)
+- [Docker Community for excellent documentation](https://docs.docker.com/)
+- Open Source Community for knowledge sharing
+
 Feel free to explore, modify, and build upon this configuration as part of my learning journey. You're also welcome to learn from it, and I wish you the best of luck!
